@@ -1,5 +1,4 @@
 import Contact from "./Contact";
-import Attribution from "./Attribution";
 import { css } from "@emotion/react";
 import { colors } from "../styles/theme";
 import { Container } from "@mantine/core";

@@ -7,7 +7,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Føniks</title>
+        <title>Aquaforce</title>
       </Head>
       <Global styles={appCSS} />
       <Component {...pageProps} />
