@@ -43,13 +43,13 @@ export const colors: ThemeColors = {
   primary: "#0070f3",
   secondary: "#f0f0f0",
   success: "#00bb9f",
-  danger: "#F04158",
+  danger: "#da344a",
   warning: "#FF970F",
   info: "#00acc1",
 
   // Special colors
-  dark: "#1a1b1d",
-  light: "#dddddd",
+  dark: "#141516",
+  light: "#d8dde9",
 
   // Regular colors
   black: "#000000",

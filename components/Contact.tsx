@@ -31,7 +31,7 @@ const Contact = forwardRef(function Contact(
           padding-top: 1rem;
           display: grid;
           grid-gap: 0.25rem;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         `}
       >
         <Button

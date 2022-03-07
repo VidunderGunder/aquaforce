@@ -1,11 +1,17 @@
-import { ComponentPropsWithRef, ReactNode, forwardRef, Ref } from "react";
+import {
+  ComponentPropsWithRef,
+  ReactNode,
+  forwardRef,
+  Ref,
+  Fragment,
+} from "react";
 import { css } from "@emotion/react";
 import { colors } from "../styles/theme";
 import { Button, Container } from "@mantine/core";
 
 export type NavbarProps = ComponentPropsWithRef<"nav"> & {
   logo?: ReactNode;
-  buttons?: ReactNode[];
+  buttons?: ReactNode;
 };
 
 // const bgColor = chroma(colors.dark).alpha(0.9375).css();
@@ -14,10 +20,12 @@ const bgColor = colors.dark;
 const Navbar = forwardRef(function Navbar(
   {
     logo = <span>Image</span>,
-    buttons = [
-      <Button key="button1">Placeholder 1</Button>,
-      <Button key="button1">Placeholder 2</Button>,
-    ],
+    buttons = (
+      <>
+        <Button>Placeholder 1</Button>
+        <Button>Placeholder 2</Button>
+      </>
+    ),
     ...props
   }: NavbarProps,
   ref?: Ref<HTMLDivElement>
@@ -73,10 +81,10 @@ const Navbar = forwardRef(function Navbar(
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            gap: 0.5em;
+            gap: 0.25em;
           `}
         >
-          {buttons.map((button, index) => button)}
+          {buttons}
         </div>
       </Container>
     </nav>
