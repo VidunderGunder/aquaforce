@@ -334,7 +334,7 @@ export default function index() {
                   >
                     LIVE DEMO
                   </Text>
-                  <Text size="md">Comming soon...</Text>
+                  <Text size="md">Coming soon...</Text>
                 </Center>
               </Box>
             </Container>
@@ -346,7 +346,7 @@ export default function index() {
               `}
             >
               <Title>*ABOUT US SECTION*</Title>
-              <Text>Comming soon...</Text>
+              <Text>Coming soon...</Text>
             </Container>
             <Container
               size="xs"
