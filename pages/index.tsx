@@ -1,16 +1,19 @@
 import { css } from "@emotion/react";
 import Footer from "../components/Footer";
-import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import useMeasure from "react-use-measure";
-import { Box, Button, Container, Image, Title } from "@mantine/core";
-import { useViewportSize } from "@mantine/hooks";
+import { Box, Button, Container, Image, Text, Title } from "@mantine/core";
+import { useScrollIntoView, useViewportSize } from "@mantine/hooks";
 import { colors } from "../styles/theme";
 import { breakpoints } from "../styles/styles";
 
 export default function index() {
   const [navRef, navBounds] = useMeasure();
-  const { height, width } = useViewportSize();
+  const { height } = useViewportSize();
+  const { scrollIntoView, targetRef } = useScrollIntoView({
+    // offset: height + navBounds.height,
+  });
+
   return (
     <>
       <Navbar
@@ -24,7 +27,11 @@ export default function index() {
             Aquaforce
           </Title>
         }
-        buttons={[<Button>Contact</Button>]}
+        buttons={[
+          <Button onClick={() => scrollIntoView({ alignment: "end" })}>
+            Contact
+          </Button>,
+        ]}
         css={css`
           z-index: 100;
           background-color: ${colors.dark};
@@ -53,29 +60,55 @@ export default function index() {
               display: flex;
               justify-content: center;
               align-items: center;
-              height: 300px;
+              max-height: 300px;
               width: 100%;
               position: relative;
               overflow: hidden;
+              @media screen and (min-width: ${breakpoints.lg}px) {
+                padding: 1rem 0 0;
+              }
               /* z-index: 1; */
             `}
           >
-            <Image
-              src="/duck.png"
+            <Container
               css={css`
-                object-fit: cover;
+                @media screen and (max-width: ${breakpoints.lg}px) {
+                  padding: 0;
+                  margin: 0;
+                }
               `}
-            />
-            <div
-              css={css`
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.375);
-              `}
-            />
+            >
+              <Box
+                css={css`
+                  @media screen and (min-width: ${breakpoints.lg}px) {
+                    border-radius: 0.5rem;
+                  }
+                  overflow: hidden;
+                  position: relative;
+                `}
+              >
+                <Image
+                  src="/duck.png"
+                  css={css`
+                    max-height: 300px;
+                    align-items: center;
+                    display: flex;
+                    object-fit: contain;
+                  `}
+                />
+                <div
+                  css={css`
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.225);
+                    box-shadow: inset 0 0.25rem 1rem 0 rgba(0, 0, 0, 0.5);
+                  `}
+                />
+              </Box>
+            </Container>
             <div
               css={css`
                 position: absolute;
@@ -90,22 +123,36 @@ export default function index() {
               <Box
                 css={css`
                   text-align: center;
-                  filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.75));
+                  filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.875));
                 `}
               >
                 <Title
                   css={css`
                     color: ${colors.white};
-                    font-size: 5rem;
+                    padding-top: 1rem;
+                    line-height: 2.25rem;
+                    font-size: 2.5rem;
+                    @media screen and (min-width: ${breakpoints.sm}px) {
+                      font-size: 3.75rem;
+                    }
+                    @media screen and (min-width: ${breakpoints.md}px) {
+                      font-size: 5rem;
+                    }
                   `}
                 >
                   This duck sucks
                 </Title>
                 <Title
                   css={css`
-                    margin-top: -1rem;
                     color: ${colors.white};
-                    font-size: 3rem;
+                    margin-top: 0.175em;
+                    font-size: 1.5rem;
+                    @media screen and (min-width: ${breakpoints.sm}px) {
+                      font-size: 2.25rem;
+                    }
+                    @media screen and (min-width: ${breakpoints.md}px) {
+                      font-size: 3rem;
+                    }
                     font-weight: 400;
                   `}
                 >
@@ -118,13 +165,19 @@ export default function index() {
         <div
           css={css`
             grid-area: content;
+            color: ${colors.light};
           `}
         >
-          <Box
-            css={css`
-              padding-top: 2rem;
-            `}
-          >
+          <Box>
+            <Container
+              css={css`
+                padding: 2rem 0 1rem;
+              `}
+            >
+              <Text align="center" size="xl">
+                Monitor and deter ducks stealing your harvest
+              </Text>
+            </Container>
             <Container>
               <Box
                 css={css`
@@ -140,15 +193,22 @@ export default function index() {
                 <Image src="/scare.svg" radius="md" />
               </Box>
             </Container>
+            <Container
+              css={css`
+                padding: 2rem 0 1rem;
+              `}
+            ></Container>
           </Box>
         </div>
-        <div
+        <Box
+          // @ts-ignore (These types should match, but doesn't :( Emotion + Mantine bug?)
+          ref={targetRef}
           css={css`
             grid-area: footer;
           `}
         >
           <Footer />
-        </div>
+        </Box>
       </div>
     </>
   );

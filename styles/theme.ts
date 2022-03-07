@@ -49,7 +49,7 @@ export const colors: ThemeColors = {
 
   // Special colors
   dark: "#1a1b1d",
-  light: "#f0f0f0",
+  light: "#dddddd",
 
   // Regular colors
   black: "#000000",

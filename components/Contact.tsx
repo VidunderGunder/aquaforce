@@ -3,7 +3,7 @@ import { Box, Button, Title } from "@mantine/core";
 import { ComponentPropsWithoutRef, forwardRef, Ref } from "react";
 import { AiOutlinePhone } from "react-icons/ai";
 import { FiMail } from "react-icons/fi";
-import { breakpoints } from "../styles/styles";
+import { BiMessageDetail } from "react-icons/bi";
 import { colors } from "../styles/theme";
 
 const Contact = forwardRef(function Contact(
@@ -52,7 +52,17 @@ const Contact = forwardRef(function Contact(
           href="tel:+4795157097"
           leftIcon={<AiOutlinePhone size={20} />}
         >
-          951 57 097
+          Call
+        </Button>
+        <Button
+          fullWidth
+          component={"a"}
+          rel="noopener norefferer"
+          target="_blank"
+          href="sms:+4795157097"
+          leftIcon={<BiMessageDetail size={20} />}
+        >
+          SMS
         </Button>
       </Box>
     </div>
